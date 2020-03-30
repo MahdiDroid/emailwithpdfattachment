@@ -32,7 +32,7 @@ public class FeedbackController {
     private MailConfig mailConfig;
 
     @PostMapping({" ", "", "/"})
-    public ResponseEntity<?> sendFeedback(@RequestBody Feedback feedback,
+    public ResponseEntity<?> sendFeedback(@Valid @RequestBody Feedback feedback,
                                           BindingResult result) {
 
         if (result.hasErrors()) {
