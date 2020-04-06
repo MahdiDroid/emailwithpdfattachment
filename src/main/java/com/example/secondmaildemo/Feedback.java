@@ -10,7 +10,7 @@ public class Feedback {
     private String name;
     @Email
     private String email;
-    @NotNull
+
 
     private String feedback;
 

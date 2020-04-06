@@ -55,8 +55,8 @@ public class FeedbackController {
 
             // create
             SimpleMailMessage mailMessage = new SimpleMailMessage();
-            mailMessage.setFrom("root@biyoteknik.com");
-            mailMessage.setTo("cooperation@biyoteknik.com");
+            mailMessage.setFrom("kariyer@biyoteknik.com");
+            mailMessage.setTo("mehdi.mhmvd@gmail.com");
             mailMessage.setSubject("new feed back from " + feedback.getName());
             mailMessage.setText(feedback.getFeedback());
             //
@@ -95,17 +95,23 @@ public class FeedbackController {
         {
             public void prepare(MimeMessage mimeMessage) throws Exception
             {
-                mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress("cooperation@biyoteknik.com"));
-                mimeMessage.setFrom(new InternetAddress("root@biyoteknik.com"));
+
+                mimeMessage.setFrom(new InternetAddress("mehdi.mhmvd@gmail.com"));
+                mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress("mehdi.mhmvd@gmail.com"));
                 mimeMessage.setSubject("New cooperation : " + feedback.getName());
-                mimeMessage.setText(feedback.getFeedback());
-                MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
-                helper.addAttachment(String.format("%s.pdf", feedback.getName()) ,
-                        new ByteArrayResource(
-                        new EmailUtility().Base64ToBytes(feedback.getFeedback() )),
-                        "application/pdf"
-                );
-                helper.setText("",true);
+                mimeMessage.setText("halllo");
+
+                if (!(feedback.getFeedback() == null )){
+
+                    MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+                    helper.addAttachment(String.format("%s.pdf", feedback.getName()) ,
+                            new ByteArrayResource(
+                                    new EmailUtility().Base64ToBytes(feedback.getFeedback() )),
+                            "application/pdf"
+                    );
+                    helper.setText("",true);
+                }
+
             }
         };
 
